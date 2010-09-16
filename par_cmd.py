@@ -5,8 +5,9 @@ import parallel, time, os, sys, getopt, optparse
 class par_cmd:
 
     def status(self):
-        self.par = parallel.Parallel()
-        return self.par.getInSelected()
+        par = parallel.Parallel()
+        value = par.getInSelected()
+	return value
 
     def ex_cmd(self, cmd):
         # denne funksjonen kan byttes ut med 'subprocesses'
@@ -17,9 +18,9 @@ class par_cmd:
         while x == 1:
             t = time.time()
             st_chg = False
-            while t <= t + 2:
-                if self.status() == True:
-                    st_chg == True
+            while time.time() <= t + 2:
+                if self.status() == False:
+                    st_chg = True
                 time.sleep(0.1)
             if st_chg == True:
                 self.ex_cmd(command)
