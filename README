@@ -1,3 +1,1 @@
-This is a program that I will use to execute a given command when there's action on the parallel port. More precisely the programm will take on parameter, the command it will execute. And since this is a program i need for a specific incident it will look for change in action on pin 13 on the parallel port.
-
-The program will check for change in status on pin 13 all the time. If it notice a change in status it will execute the given command.
+par_cmd.py is a program that will execute a given command when it notices action on pin13 on the parallell port. It will recognize if it's several actions on a short time of periode or if it's one long one.
