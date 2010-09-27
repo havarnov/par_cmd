@@ -23,12 +23,26 @@ class par_cmd:
             while time.time() <= t + 2:
                 if self.status() == False:
                     while self.status() == False:
-                        pass
+                        t = time.time()
                     st_chg = True
-                else:
-                    t = time.time()
             if st_chg == True:
                 self.ex_cmd(command)
+
+    def chg_status2(self, command):
+        x = 1
+        while x == 1:
+            st_chg = False
+            while self.status() == True:
+                pass
+            t = time.time()
+            while time.time() <= t + 2:
+                while self.status() == False:
+                    t = time.time()
+                if st_chg == False:
+                    self.ex_cmd(command)
+                    st_chg = True
+
+
 
 p_c = par_cmd()
 
@@ -41,7 +55,7 @@ def main():
     if len(sys.argv) == 1:
         p.error('\nNo options passed. \n-h[--help] for usage')
     else:
-        p_c.chg_status(option.command)
+        p_c.chg_status2(option.command)
 
 
 
