@@ -1,6 +1,6 @@
 #/usr/bin/env python
 
-import parallel, time, os, sys, getopt, optparse
+import parallel, time, os, sys, optparse
 
 class par_cmd:
 
@@ -14,16 +14,15 @@ class par_cmd:
         os.popen(cmd)
 
     def chg_status(self, command):
-        x = 1
-        while x == 1:
-            t = time.time()
-            st_chg = False
-            while time.time() <= t + 2:
-                if self.status() == False:
-                    st_chg = True
-                time.sleep(0.1)
-            if st_chg == True:
-                self.ex_cmd(command)
+	    lasttime = time.time()
+        while 1:
+            if self.status() == False:
+                if lasttime > time.time() + 2:
+                    lasttime = time.time()
+                    self.ex_cmd(command)
+                else:
+                    lasttime = time.time()
+            time.sleep(0.1)
 
 p_c = par_cmd()
 
