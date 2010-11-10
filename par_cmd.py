@@ -14,7 +14,7 @@ class par_cmd:
         os.popen(cmd)
 
     def chg_status(self, command):
-	    lasttime = time.time()
+        lasttime = time.time()
         while 1:
             if self.status() == False:
                 if lasttime > time.time() + 2:
