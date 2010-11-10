@@ -17,7 +17,7 @@ class par_cmd:
         lasttime = time.time()
         while 1:
             if self.status() == False:
-                if lasttime > time.time() + 2:
+                if time.time() - lasttime > 2:
                     lasttime = time.time()
                     self.ex_cmd(command)
                 else:
