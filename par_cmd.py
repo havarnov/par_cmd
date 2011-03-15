@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#/usr/bin/env python2
 
 import parallel, time, os, sys, optparse
 
@@ -15,14 +15,13 @@ class par_cmd:
 
     def chg_status(self, command):
         lasttime = time.time()
-        while 1:
-            if self.status() == False:
-                if time.time() - lasttime > 2:
-                    lasttime = time.time()
-                    self.ex_cmd(command)
-                else:
-                    lasttime = time.time()
-            time.sleep(0.1)
+        while self.status() == False:
+            if time.time() - lasttime > 2:
+                lasttime = time.time()
+                self.ex_cmd(command)
+            else:
+                lasttime = time.time()
+        time.sleep(0.1)
 
 p_c = par_cmd()
 
